@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ActiveGame/UnitInstance.gd" type="Script" id=1]
+[ext_resource path="res://ActiveGame/Art/Textures/TeamIndicators.png" type="Texture" id=2]
+[ext_resource path="res://ActiveGame/Art/Textures/HealthTextures.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 8, 16, 8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 32 )
+
+[node name="UnitInstance" type="Node2D"]
+script = ExtResource( 1 )
+unitName = "Peasant"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="HPBar" type="TextureProgress" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = -30.0
+margin_right = -36.0
+margin_bottom = 30.0
+value = 100.0
+rounded = true
+texture_under = SubResource( 1 )
+texture_progress = SubResource( 2 )
+fill_mode = 3
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionProgress" type="ProgressBar" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = 36.0
+margin_right = 32.0
+margin_bottom = 50.0
+step = 0.0
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 3 )
