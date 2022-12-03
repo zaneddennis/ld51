@@ -80,7 +80,7 @@ func EnterGameOver(result):
 #		p.hide()
 
 
-func SpawnUnit(unitName, coords, team=0):
+func SpawnUnit(unitName, coords, team=0, dir=0):
 	var tm = get_node("World/Tilemaps/Units")
 	var unitTileId = tm.tile_set.find_tile_by_name(unitName)
 	tm.set_cellv(coords, unitTileId)
@@ -90,9 +90,10 @@ func SpawnUnit(unitName, coords, team=0):
 	ui.unitName = unitName
 	ui.unitTeam = team
 	ui.coords = coords
+	ui.unitDir = dir
 	ui.Activate()
 
-func SpawnFadingAlert(coords, text="", color="", spritePath=""):
+func SpawnFadingAlert(coords, text="", color="", spritePath="", dir=0):
 	var fa = FadingAlert.instance()
 	$World.add_child(fa)
 	fa.position = (coords * 64) + Vector2(32, 32)
@@ -104,8 +105,9 @@ func SpawnFadingAlert(coords, text="", color="", spritePath=""):
 	
 	if spritePath:
 		fa.get_node("Sprite").texture = load("res://" + spritePath)
+		fa.get_node("Sprite").rotation = dir * (PI/2)
 
-func SpawnAOEEffect(coords, map, effect="Damage", spritepath=""):
+func SpawnAOEEffect(coords, map, effect="Damage", spritepath="", dir=0):
 	var aoe = AOE.instance()
 	$World.add_child(aoe)
 	aoe.position = (coords * 64)
@@ -114,7 +116,7 @@ func SpawnAOEEffect(coords, map, effect="Damage", spritepath=""):
 		var tileId = aoe.get_node("TileMap").tile_set.find_tile_by_name(effect)
 		aoe.get_node("TileMap").set_cellv(v, tileId)
 		if spritepath:
-			SpawnFadingAlert(coords + v, "", "", spritepath)
+			SpawnFadingAlert(coords + v, "", "", spritepath, dir)
 
 
 func CheckAOE_OLD(coords, map, attack, isMagic=false):

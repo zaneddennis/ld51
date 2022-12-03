@@ -1673,7 +1673,7 @@ tile_data = PoolIntArray( 65544, 1, 0, 65545, 1, 0, 65546, 2, 0, 131076, 0, 0, 1
 z_index = 1
 tile_set = SubResource( 4 )
 format = 1
-tile_data = PoolIntArray( 8, 0, 0, 196616, 4, 0, 393226, 4, 0, 851973, 0, 0 )
+tile_data = PoolIntArray( 8, 0, 0, 262153, 4, 0, 327688, 4, 0, 327690, 4, 0, 393225, 4, 0, 589833, 3, 0, 655368, 3, 0, 655370, 3, 0, 720905, 3, 0, 851973, 0, 0 )
 
 [node name="UnitPlacement" type="TileMap" parent="World/Tilemaps"]
 modulate = Color( 1, 1, 1, 0.392157 )
@@ -1693,16 +1693,55 @@ unitName = "Keep"
 unitTeam = 1
 coords = Vector2( 8, 0 )
 
-[node name="UnitInstance2" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 544, 224 )
+[node name="UnitInstance10" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 608, 288 )
 unitName = "Spearman"
 unitTeam = 1
-coords = Vector2( 8, 3 )
+coords = Vector2( 9, 4 )
 
-[node name="UnitInstance3" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 672, 416 )
+[node name="UnitInstance11" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 672, 352 )
 unitName = "Spearman"
-coords = Vector2( 10, 6 )
+unitTeam = 1
+unitDir = 1
+coords = Vector2( 10, 5 )
+
+[node name="UnitInstance12" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 608, 416 )
+unitName = "Spearman"
+unitTeam = 1
+unitDir = 2
+coords = Vector2( 9, 6 )
+
+[node name="UnitInstance13" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 544, 352 )
+unitName = "Spearman"
+unitTeam = 1
+unitDir = 3
+coords = Vector2( 8, 5 )
+
+[node name="UnitInstance14" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 608, 608 )
+unitName = "Archer"
+coords = Vector2( 9, 9 )
+
+[node name="UnitInstance15" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 672, 672 )
+unitName = "Archer"
+unitDir = 1
+coords = Vector2( 10, 10 )
+
+[node name="UnitInstance16" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 608, 736 )
+unitName = "Archer"
+unitDir = 2
+coords = Vector2( 9, 11 )
+
+[node name="UnitInstance17" parent="World/Units" instance=ExtResource( 17 )]
+position = Vector2( 544, 672 )
+unitName = "Archer"
+unitDir = 3
+coords = Vector2( 8, 10 )
 
 [node name="Projectiles" type="Node2D" parent="World"]
 

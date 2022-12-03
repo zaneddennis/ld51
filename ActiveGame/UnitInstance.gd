@@ -9,6 +9,8 @@ onready var ag = get_node("/root/ActiveGame")
 
 export var unitName = ""
 export var unitTeam = 0
+export var unitDir = 0  # quarter turns clockwise past 0,-1
+
 var unitType = ""
 
 var hp = 0
@@ -107,21 +109,20 @@ func Harvest(terrain):
 		ag.opponentResources[resource] += 1
 		ag.SpawnFadingAlert(coords, "+1 %s" % resource, "red")
 
+# fire ranged weapon
 func Shoot():
 	var p = Projectile.instance()
 	get_node("/root/ActiveGame/World/Projectiles").add_child(p)
-	p.Activate(position, (float(unitTeam) - 0.5)*2, maxRange, attack)
+	p.Activate(position, unitDir, maxRange, attack)
 
 # swing melee weapon
 func Hit():
 	var aoeMap = Database.cards[unitName]["aoeMap"].duplicate(true)
 	var attackTexture = Database.cards[unitName]["attackTexture"]
 	
-	if unitTeam == 1:
-		for i in range(len(aoeMap)):
-			aoeMap[i].y = abs(aoeMap[i].y)
+	aoeMap = Util.TransformAOEMap(aoeMap, unitDir)
 	
-	ag.SpawnAOEEffect(coords, aoeMap, "Damage", "ActiveGame/Art/Attacks/%s" % attackTexture)
+	ag.SpawnAOEEffect(coords, aoeMap, "Damage", "ActiveGame/Art/Attacks/%s" % attackTexture, unitDir)
 	ag.CheckAOE_v2(coords, aoeMap, "attack", {"attack": attack, "isMagic": false})
 
 func Cast():
@@ -176,6 +177,7 @@ func Activate():
 	position = coords * 64 + Vector2(32, 32)
 	
 	$Sprite.region_rect = Rect2(Vector2(64, 0) * unitTeam, Vector2(64, 64))
+	$Sprite.rotation = (PI/2) * unitDir
 	
 	var unitInfo = Database.cards[unitName]
 	

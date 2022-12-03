@@ -49,6 +49,11 @@ func ProcessPlaceCard():
 			print("Selecting tile")
 			SelectTile(coords)
 			$PlaceCard/Timer.start()
+		
+		if Input.is_action_just_pressed("rotate_left"):
+			ag.get_node("World/VFX/PlaceUnitIndicator").Rotate(-1)
+		elif Input.is_action_just_pressed("rotate_right"):
+			ag.get_node("World/VFX/PlaceUnitIndicator").Rotate(1)
 
 
 func ProcessAction():
@@ -190,30 +195,11 @@ func SelectCard(i):
 	$BuyCard/Timer.start()
 
 func SelectTile(coords):
-	#var up = ag.get_node("World/Tilemaps/UnitPlacement")
-	#if up.get_cellv(coords) == 0:  # if tile is valid for unit placement
-	ag.SpawnUnit(playerSelection, coords)
-	ag.get_node("World/VFX/PlaceUnitIndicator").queue_free()
+	var pui = ag.get_node("World/VFX/PlaceUnitIndicator")
+	
+	ag.SpawnUnit(playerSelection, coords, 0, pui.unitDir)
+	pui.queue_free()
 	ag.get_node("World/Tilemaps/UnitPlacement").clear()
-	
-	"""# opponent validity map
-	var bestY = 0
-	for ui in ag.get_node("World/Units").get_children():
-		if ui.unitTeam == 1 and ui.coords.y > bestY:
-			bestY = ui.coords.y
-	bestY += 1
-	
-	var tmTerrain = ag.get_node("World/Tilemaps/TileMap")
-	var tmUnits = ag.get_node("World/Tilemaps/Units")
-	
-	# opponent place unit
-	var oCoords = Vector2(randi()%16, randi()%16)
-	while oCoords.y > bestY:
-		oCoords = Vector2(randi()%16, randi()%16)
-	print("Opponent places at ", oCoords)
-	ag.SpawnUnit(opponentSelection, oCoords, 1)
-	
-	# todo: VFX highlight"""
 	
 	OpponentPlaceUnit()
 

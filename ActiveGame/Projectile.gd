@@ -4,7 +4,7 @@ extends KinematicBody2D
 onready var ag = get_node("/root/ActiveGame")
 
 
-export var direction = -1
+var direction = Vector2(0, 0)
 var speed = 96
 var maxRange = 0  # tiles
 var damage = 0
@@ -17,7 +17,7 @@ func _ready():
 
 func _process(delta):
 	if ag.phase == "ACTION":
-		var velocity = Vector2(0, direction) * speed
+		var velocity = direction * speed
 		var coll = move_and_collide(velocity * delta)
 		
 		if coll:
@@ -31,13 +31,11 @@ func _process(delta):
 func Activate(pos, dir, mr, a):
 	startPos = pos
 	
-	direction = dir
-	if direction == 1:  # down
-		$Sprite.flip_v = true
-		startPos.y += 64
-	else:
-		startPos.y -= 64
-		
+	direction = Vector2(0, -1).rotated(dir * (PI/2))
+	startPos += direction * 64
+	
+	$Sprite.rotation = dir * (PI/2)
+	
 	position = startPos
 	
 	maxRange = mr
