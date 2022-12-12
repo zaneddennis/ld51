@@ -57,7 +57,7 @@ func EnterAction():
 	phase = "ACTION"
 	
 	for ix in [$UI.playerSelectionIx, $UI.opponentSelectionIx]:
-		if ix != 4:
+		if ix != 4 and ix != -1:
 			activeCards[ix] = Database.DrawCard()
 	
 	$UI.ActivateAction()
@@ -74,10 +74,6 @@ func EnterGameOver(result):
 	$UI/GameOver/Panel/Title.text = "YOU HAVE " + result
 	
 	$UI/GameOver.show()
-
-#func ClearPhase():
-#	for p in $UI.get_children():
-#		p.hide()
 
 
 func SpawnUnit(unitName, coords, team=0, dir=0):
