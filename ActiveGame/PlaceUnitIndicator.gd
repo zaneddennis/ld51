@@ -26,7 +26,7 @@ func Activate(unitName):
 		"projectile":
 			var maxRange = Database.cards[unitName]["maxRange"]
 			for i in range(1, 1+maxRange):
-				$TileMap.set_cell(0, i, 0)
+				$TileMap.set_cell(0, -1 * i, 0)
 		
 		"melee":
 			var aoeMap = Database.cards[unitName]["aoeMap"]

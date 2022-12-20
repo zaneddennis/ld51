@@ -25,7 +25,7 @@ var playerResources = {
 }
 
 var opponentResources = {
-	"Food": 5,
+	"Food": 10,
 	"Wood": 5,
 	"Iron": 5,
 	"Gems": 5
@@ -115,7 +115,7 @@ func SpawnAOEEffect(coords, map, effect="Damage", spritepath="", dir=0):
 			SpawnFadingAlert(coords + v, "", "", spritepath, dir)
 
 
-func CheckAOE_OLD(coords, map, attack, isMagic=false):
+"""func CheckAOE_OLD(coords, map, attack, isMagic=false):
 	for v in map:
 		var coord = coords + v
 		if $World/Tilemaps/Units.get_cellv(coord) != -1:
@@ -125,7 +125,7 @@ func CheckAOE_OLD(coords, map, attack, isMagic=false):
 					unit = ui
 					break
 			assert(unit != null)
-			unit.Attacked(attack, isMagic)
+			unit.Attacked(attack, isMagic)"""
 
 func CheckAOE_v2(coords, map, action, actionParams):
 	for v in map:

@@ -110,9 +110,14 @@ func ActivatePlaceCard():
 		get_parent().get_node("World/VFX").add_child(pui)
 		pui.Activate(playerSelection)
 	
-	elif opponentSelection:
-		OpponentPlaceUnit()
+	else:
+		if opponentSelection:
+			OpponentPlaceUnit()
+		
 		ag.EnterAction()
+	#elif opponentSelection:
+	#	OpponentPlaceUnit()
+	#	ag.EnterAction()
 
 func ActivateAction():
 	$Action.show()
@@ -156,7 +161,6 @@ func UpdateCards():
 		for r in costs:
 			if costs[r] > ag.playerResources[r]:
 				button.disabled = true
-				#button.modulate = Color("afafaf")
 		
 		i += 1
 
@@ -175,20 +179,21 @@ func SelectCard(i):
 			ag.playerResources[r] -= costs[r]
 	
 	# opponent picks card
-	var c = i
-	while c == i:
-		c = 1 + randi() % 3
-	opponentSelectionIx = c
-	opponentSelection = ag.activeCards[c]
+	opponentSelectionIx = ag.get_node("AI").PickCard(i)
+	opponentSelection = ""
 	
-	print("Opponent picks card %d" % c)
-	print("Opponent picks card %d" % c)
-	var costs = Database.cards[ag.activeCards[c]]["cost"]
-	for r in costs:
-		ag.opponentResources[r] -= costs[r]
+	if opponentSelectionIx == -1:
+		pass
+	else:
+		opponentSelection = ag.activeCards[opponentSelectionIx]
 	
-	for co in $Common/CardsPanel/VBoxContainer.get_children():
-		co.get_node("Button").disabled = true
+		print("Opponent picks card %d" % opponentSelectionIx)
+		var costs = Database.cards[ag.activeCards[opponentSelectionIx]]["cost"]
+		for r in costs:
+			ag.opponentResources[r] -= costs[r]
+	
+		for co in $Common/CardsPanel/VBoxContainer.get_children():
+			co.get_node("Button").disabled = true
 	
 	UpdateResourcesPanel()
 	
@@ -201,31 +206,12 @@ func SelectTile(coords):
 	pui.queue_free()
 	ag.get_node("World/Tilemaps/UnitPlacement").clear()
 	
-	OpponentPlaceUnit()
+	if opponentSelection:
+		OpponentPlaceUnit()
 
 func OpponentPlaceUnit():
-	# opponent validity map
-	var bestY = 0
-	for ui in ag.get_node("World/Units").get_children():
-		if ui.unitTeam == 1 and ui.coords.y > bestY:
-			bestY = ui.coords.y
-	bestY += 1
-	
-	var tmTerrain = ag.get_node("World/Tilemaps/TileMap")
-	var tmUnits = ag.get_node("World/Tilemaps/Units")
-	var tmPlace = ag.get_node("World/Tilemaps/UnitPlacement")
-	for v in tmTerrain.get_used_cells():
-		if v.y <= bestY and tmTerrain.get_cellv(v) in [1] and tmUnits.get_cellv(v) == -1:
-			tmPlace.set_cellv(v, 0)
-	
-	# choose opponent place location
-	var coords = Vector2(randi()%16, randi()%int(bestY+1))
-	while tmPlace.get_cellv(coords) != 0:  # if bad selection, try again
-		coords = Vector2(randi()%16, randi()%int(bestY+1))
-	
-	# place opponent unit
-	tmPlace.clear()
-	ag.SpawnUnit(opponentSelection, coords, 1)
+	ag.SpawnUnit(opponentSelection, ag.get_node("AI").PickTile(opponentSelection), 1, 2)
+	ag.get_node("World/Tilemaps/UnitPlacement").clear()
 
 
 func _on_CardOption_mouse_entered(i):

@@ -1,6 +1,23 @@
 extends Node
 
 
+# reference
+var bt2Resource = {
+	"Farm": "Food",
+	"Forest": "Wood",
+	"Iron Deposit": "Iron",
+	"Gems Deposit": "Gems"
+}
+
+var res2Bt = {
+	"Food": "Farm",
+	"Wood": "Forest",
+	"Iron": "Iron Deposit",
+	"Gems": "Gems Deposit"
+}
+
+
+# cards
 var cards = {
 	"Peasant": {
 		"frequency": 10,

@@ -130,6 +130,34 @@ font_data = ExtResource( 3 )
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
+4/name = "Hill"
+4/texture = ExtResource( 18 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 256, 0, 64, 64 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Mountain"
+5/texture = ExtResource( 18 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 320, 0, 64, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
 
 [sub_resource type="TileSet" id=4]
 0/name = "Keep"
@@ -1673,7 +1701,7 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 1, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 [node name="Bonus" type="TileMap" parent="World/Tilemaps"]
 tile_set = SubResource( 5 )
 format = 1
-tile_data = PoolIntArray( 65544, 1, 0, 65545, 1, 0, 65546, 2, 0, 131076, 0, 0, 196611, 1, 0, 196622, 0, 0, 262148, 1, 0, 262158, 1, 0, 327690, 3, 0, 327694, 1, 0, 393224, 2, 0, 393225, 0, 0, 458759, 1, 0, 524292, 3, 0, 524295, 1, 0, 524296, 1, 0, 524298, 0, 0, 589836, 1, 0, 655366, 1, 0, 720906, 0, 0, 786437, 0, 0, 851971, 2, 0 )
+tile_data = PoolIntArray( 65542, 4, 0, 65544, 1, 0, 65545, 1, 0, 65546, 2, 0, 131076, 0, 0, 131077, 4, 0, 131082, 4, 0, 131085, 4, 0, 196611, 1, 0, 196622, 0, 0, 262148, 1, 0, 262149, 5, 0, 262155, 4, 0, 262157, 4, 0, 262158, 1, 0, 327684, 4, 0, 327690, 3, 0, 327694, 1, 0, 393224, 2, 0, 393225, 0, 0, 393228, 4, 0, 458754, 5, 0, 458757, 4, 0, 458758, 4, 0, 458759, 1, 0, 458763, 5, 0, 524292, 3, 0, 524293, 4, 0, 524295, 1, 0, 524296, 1, 0, 524298, 0, 0, 589836, 1, 0, 655366, 1, 0, 655367, 4, 0, 655368, 4, 0, 720906, 0, 0, 720907, 5, 0, 786437, 0, 0, 851971, 2, 0 )
 
 [node name="Units" type="TileMap" parent="World/Tilemaps"]
 z_index = 1
@@ -1697,6 +1725,7 @@ coords = Vector2( 5, 13 )
 position = Vector2( 544, 32 )
 unitName = "Keep"
 unitTeam = 1
+unitDir = 2
 coords = Vector2( 8, 0 )
 
 [node name="UnitInstance10" parent="World/Units" instance=ExtResource( 17 )]
@@ -1746,7 +1775,6 @@ coords = Vector2( 9, 11 )
 [node name="UnitInstance17" parent="World/Units" instance=ExtResource( 17 )]
 position = Vector2( 544, 672 )
 unitName = "Archer"
-unitDir = 3
 coords = Vector2( 8, 10 )
 
 [node name="Projectiles" type="Node2D" parent="World"]

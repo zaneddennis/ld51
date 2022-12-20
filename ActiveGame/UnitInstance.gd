@@ -111,9 +111,15 @@ func Harvest(terrain):
 
 # fire ranged weapon
 func Shoot():
+	var effAttack = attack
+	
+	var bt = ag.get_node("World/Tilemaps/Bonus").get_cellv(coords)
+	if bt == 4:
+		effAttack += 1
+	
 	var p = Projectile.instance()
 	get_node("/root/ActiveGame/World/Projectiles").add_child(p)
-	p.Activate(position, unitDir, maxRange, attack)
+	p.Activate(position, unitDir, maxRange, effAttack)
 
 # swing melee weapon
 func Hit():
@@ -133,9 +139,17 @@ func Cast():
 
 func Attacked(att, isMagic):
 	var damage = att
+	var effDefense = defense
+	
+	var bt = ag.get_node("World/Tilemaps/Bonus").get_cellv(coords)
+	if bt == 1:  # forest
+		effDefense += 1
+	elif bt == 5:  # mountain
+		effDefense += 2
+	
 	if not isMagic:
-		damage = max(1, round(att/defense))
-	print(unitName, " is hit! From %d Attack and %d Defense, suffers %d damage." % [att, defense, damage])
+		damage = max(1, round(att/effDefense))
+	print(unitName, " is hit! From %d Attack and %d Defense, suffers %d damage." % [att, effDefense, damage])
 	TakeDamage(damage)
 
 
