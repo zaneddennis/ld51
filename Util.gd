@@ -27,9 +27,14 @@ class KeySort:
 		if a[1] < b[1]:
 			return true
 		return false
+	
+	static func sort_descending(a, b):
+		if a[1] > b[1]:
+			return true
+		return false
 
 # returns an Array of keys of the dict, in order by their keys
-func DictSort(d):
+func DictSort(d, asc=true):
 	
 	assert(len(d) > 0)
 	
@@ -38,7 +43,10 @@ func DictSort(d):
 	for k in d:
 		arr.append([k, d[k]])
 	
-	arr.sort_custom(KeySort, "sort_ascending")
+	if asc:
+		arr.sort_custom(KeySort, "sort_ascending")
+	else:
+		arr.sort_custom(KeySort, "sort_descending")
 	return arr
 
 

@@ -210,7 +210,9 @@ func SelectTile(coords):
 		OpponentPlaceUnit()
 
 func OpponentPlaceUnit():
-	ag.SpawnUnit(opponentSelection, ag.get_node("AI").PickTile(opponentSelection), 1, 2)
+	var vDir = ag.get_node("AI").PickTile(opponentSelection)
+	#ag.SpawnUnit(opponentSelection, ag.get_node("AI").PickTile(opponentSelection), 1, 2)
+	ag.SpawnUnit(opponentSelection, vDir[0], 1, vDir[1])
 	ag.get_node("World/Tilemaps/UnitPlacement").clear()
 
 

@@ -13,7 +13,7 @@ var phase = ""
 var activeCards = {
 	1: "Peasant",
 	2: "Spearman",
-	3: "Archer",
+	3: "Spearman",
 	4: "Peasant"
 }
 
@@ -145,6 +145,14 @@ func CheckAOE_v2(coords, map, action, actionParams):
 				"heal": unit.Heal(actionParams["heal"])
 				
 				_: assert(false)
+
+func CheckForUnit(coord):
+	var unit = null
+	for ui in $World/Units.get_children():
+		if ui.coords == coord:
+			unit = ui
+			break
+	return unit
 
 
 func _on_Timer_timeout():
