@@ -20,7 +20,7 @@ var res2Bt = {
 # cards
 var cards = {
 	"Peasant": {
-		"frequency": 10,
+		"frequency": 6,
 		"description": "Harvests Resources from Wheat, Forest, Iron, and Gems tiles.",
 		"unitType": "peasant",
 		"texture": Vector2(0, 1),
@@ -102,9 +102,10 @@ var cards = {
 		
 		"maxHP": 8,
 		"actionSpeed": 0.4,
-		"maxRange": 4,
 		"attack": 15,
-		"defense": 6
+		"defense": 6,
+		
+		"maxRange": 4,
 	},
 	"Swordsman": {
 		"frequency": 4,
@@ -139,6 +140,7 @@ var cards = {
 		"attack": 3,
 		"defense": 3,
 		
+		"maxRange": 2,
 		"spell": "Piercing_Bolt"
 	},
 	"Red Mage": {
@@ -156,6 +158,7 @@ var cards = {
 		"attack": 5,
 		"defense": 6,
 		
+		"maxRange": 3,
 		"spell": "Fireball"
 	},
 	"Woodland Sage": {
@@ -173,6 +176,7 @@ var cards = {
 		"attack": 0,
 		"defense": 8,
 		
+		"maxRange": 1,
 		"spell": "Healing_Aura"
 	},
 	

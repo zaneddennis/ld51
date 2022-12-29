@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://ActiveGame/ActiveGame.gd" type="Script" id=1]
 [ext_resource path="res://Themes/Theme.tres" type="Theme" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://ActiveGame/UI/UIManager.gd" type="Script" id=19]
 [ext_resource path="res://ActiveGame/Audio/LD51_Action_Song.mp3" type="AudioStream" id=20]
 [ext_resource path="res://ActiveGame/AI.gd" type="Script" id=21]
+[ext_resource path="res://ActiveGame/UI/Pause.gd" type="Script" id=22]
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 16 )
@@ -341,9 +342,6 @@ script = ExtResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CardsPanel" type="NinePatchRect" parent="UI/Common"]
 anchor_bottom = 1.0
@@ -1520,21 +1518,22 @@ __meta__ = {
 
 [node name="BuyCard" type="Control" parent="UI"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Pass" type="NinePatchRect" parent="UI/BuyCard"]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 556.0
-margin_top = 504.0
-margin_right = 684.0
-margin_bottom = 568.0
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
 texture = ExtResource( 8 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -1569,8 +1568,9 @@ one_shot = true
 
 [node name="Action" type="Control" parent="UI"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1578,8 +1578,8 @@ __meta__ = {
 [node name="TimerBar" type="ProgressBar" parent="UI/Action"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 364.0
-margin_right = 876.0
+margin_left = -256.0
+margin_right = 256.0
 margin_bottom = 20.0
 max_value = 10.0
 value = 8.0
@@ -1603,6 +1603,79 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Pause" type="Control" parent="UI"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 22 )
+
+[node name="ColorRect" type="ColorRect" parent="UI/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.196078, 0.196078, 0.392157 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -382.0
+margin_right = 192.0
+margin_bottom = 256.0
+texture = ExtResource( 8 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Label" type="Label" parent="UI/Pause/NinePatchRect/VBoxContainer"]
+margin_right = 368.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "LABEL"
+align = 1
+valign = 1
+
+[node name="Resume" type="Button" parent="UI/Pause/NinePatchRect/VBoxContainer"]
+margin_top = 68.0
+margin_right = 368.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Resume Game"
+
+[node name="MainMenu" type="Button" parent="UI/Pause/NinePatchRect/VBoxContainer"]
+margin_top = 254.0
+margin_right = 368.0
+margin_bottom = 436.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quit to Main Menu"
+
+[node name="Quit" type="Button" parent="UI/Pause/NinePatchRect/VBoxContainer"]
+margin_top = 440.0
+margin_right = 368.0
+margin_bottom = 622.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Exit to Desktop"
 
 [node name="GameOver" type="Control" parent="UI"]
 visible = false
@@ -1795,6 +1868,9 @@ stream = ExtResource( 20 )
 [connection signal="pressed" from="UI/BuyCard/Pass/PassButton" to="UI" method="_on_PassButton_pressed"]
 [connection signal="timeout" from="UI/BuyCard/Timer" to="UI" method="_on_BuyCard_Timer_timeout"]
 [connection signal="timeout" from="UI/PlaceCard/Timer" to="UI" method="_on_PlaceCard_Timer_timeout"]
+[connection signal="pressed" from="UI/Pause/NinePatchRect/VBoxContainer/Resume" to="UI/Pause" method="_on_Resume_pressed"]
+[connection signal="pressed" from="UI/Pause/NinePatchRect/VBoxContainer/MainMenu" to="UI/Pause" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="UI/Pause/NinePatchRect/VBoxContainer/Quit" to="UI/Pause" method="_on_Quit_pressed"]
 [connection signal="pressed" from="UI/GameOver/Panel/VBoxContainer/MainMenu" to="UI/GameOver" method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="UI/GameOver/Panel/VBoxContainer/Desktop" to="UI/GameOver" method="_on_Desktop_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

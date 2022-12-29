@@ -43,10 +43,12 @@ func PickTile(unitName):
 	var tmPlace = InitializeTMPlace(yLim)
 	
 	# pick tile
-	if unitType == "Peasant":
+	if unitType == "peasant":
 		return PickTilePeasant(tmPlace, yLim)
 	elif unitType == "melee":
 		return PickTileMelee(tmPlace, yLim)
+	elif unitType in ["projectile", "mage"]:
+		return PickTileRanged(tmPlace, yLim, unitInfo)
 	else:
 		return PickTileElse(tmPlace, yLim)
 
@@ -91,7 +93,7 @@ func PickTileMelee(tmPlace, yLim):
 	# initialize score map
 	var scores = {}
 	for v in candidates:
-		for i in range(4):
+		for i in range(1, 4):
 			scores[[v, i]] = 0
 	
 	# if facing enemy, add score
@@ -115,6 +117,58 @@ func PickTileMelee(tmPlace, yLim):
 			scores[vDir] += 2
 	
 	# of tiles with highest score, pick random
+	return GetHighestScore(scores)
+	
+func PickTileRanged(tmPlace, yLim, unitInfo):
+	var maxRange = unitInfo["maxRange"]
+	var candidates = GetOpenTiles(tmPlace, yLim-maxRange, yLim)
+	
+	# initialize score map
+	var scores = {}
+	for v in candidates:
+		for i in range(1, 4):
+			scores[[v, i]] = 0
+	
+	var tmUnits = ag.get_node("World/Tilemaps/Units")
+	for vDir in scores:
+		var v = vDir[0]
+		var dir = vDir[1]
+		
+		# add scores for enemy units faced
+		# subtract scores for friendly units faced
+		for r in range(maxRange):
+			var coord = v + Vector2(0, r).rotated(dir * (PI/2))
+			if tmUnits.get_cellv(coord) != -1:
+				var unit = ag.CheckForUnit(coord)
+			
+				if unit.unitTeam == 0:  # facing player unit
+					scores[vDir] += 2
+				elif unit.unitTeam == 1:  # facing own teammate
+					scores[vDir] -= 3
+		
+		# add scores for bonus terrain
+		var coord = v
+		var tmBonus = ag.get_node("World/Tilemaps/Bonus")
+		match tmBonus.get_cellv(coord):
+			1:  # forest
+				scores[vDir] += 1
+			4:  # hill
+				scores[vDir] += 3
+			5:  # mountain
+				scores[vDir] += 2
+	
+	return GetHighestScore(scores)
+
+func PickTileElse(tmPlace, yLim):
+	var coords = Vector2(randi()%16, yLim)
+	while tmPlace.get_cellv(coords) != 0:  # if bad selection, try again
+		coords = Vector2(randi()%16, yLim)
+	return [coords, 2]
+
+
+# takes a vDir score dictionary
+# returns a randomly-selected vDir with the highest score
+func GetHighestScore(scores):
 	var sorted = Util.DictSort(scores, false)
 	var maxScore = sorted[0][1]
 	
@@ -129,13 +183,6 @@ func PickTileMelee(tmPlace, yLim):
 			break
 	
 	return Util.Choice(finalCandidates)
-	
-func PickTileElse(tmPlace, yLim):
-	var coords = Vector2(randi()%16, yLim)
-	while tmPlace.get_cellv(coords) != 0:  # if bad selection, try again
-		coords = Vector2(randi()%16, yLim)
-	return [coords, 2]
-
 
 func GetOpenTiles(tmPlace, yMin, yLim):
 	var result = []

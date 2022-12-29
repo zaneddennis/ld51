@@ -12,8 +12,8 @@ var phase = ""
 
 var activeCards = {
 	1: "Peasant",
-	2: "Spearman",
-	3: "Spearman",
+	2: "Peasant",
+	3: "Peasant",
 	4: "Peasant"
 }
 
