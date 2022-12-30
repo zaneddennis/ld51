@@ -1855,7 +1855,6 @@ coords = Vector2( 8, 10 )
 [node name="VFX" type="Node2D" parent="World"]
 
 [node name="RTSCamera" type="Camera2D" parent="."]
-position = Vector2( 544, 544 )
 current = true
 script = ExtResource( 6 )
 
