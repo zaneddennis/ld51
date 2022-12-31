@@ -1,25 +1,35 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Themes/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Themes/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://MainMenu/LD51_Main_Menu.mp3" type="AudioStream" id=4]
+[ext_resource path="res://ActiveGame/Art/Cards/Card_Base.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
 font_data = ExtResource( 1 )
 
+[sub_resource type="StreamTexture" id=5]
+load_path = "res://.import/Units.png-9df6b9016390442f2984f9ebdc6cde9a.stex"
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = SubResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 2 )
 
-[node name="Control" type="Control" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
+color = Color( 0, 0, 0, 1 )
 
-[node name="Title" type="Label" parent="Control"]
+[node name="Title" type="Label" parent="Background"]
+anchor_right = 1.0
 margin_top = 32.0
-margin_right = 960.0
+margin_right = -288.0
 margin_bottom = 108.0
 custom_fonts/font = SubResource( 3 )
 text = "BATTLE LINES"
@@ -29,7 +39,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Buttons" type="VBoxContainer" parent="Control"]
+[node name="Buttons" type="VBoxContainer" parent="Background"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,14 +52,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartGame" type="Button" parent="Control/Buttons"]
+[node name="StartGame" type="Button" parent="Background/Buttons"]
 margin_right = 256.0
 margin_bottom = 185.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="Control/Buttons"]
+[node name="Button2" type="Button" parent="Background/Buttons"]
 margin_top = 217.0
 margin_right = 256.0
 margin_bottom = 402.0
@@ -57,7 +67,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Placeholder Button"
 
-[node name="Button3" type="Button" parent="Control/Buttons"]
+[node name="Button3" type="Button" parent="Background/Buttons"]
 margin_top = 434.0
 margin_right = 256.0
 margin_bottom = 619.0
@@ -65,7 +75,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Placeholder Button"
 
-[node name="ExitToDesktop" type="Button" parent="Control/Buttons"]
+[node name="ExitToDesktop" type="Button" parent="Background/Buttons"]
 margin_top = 651.0
 margin_right = 256.0
 margin_bottom = 836.0
@@ -73,56 +83,376 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Exit to Desktop"
 
-[node name="Graphics" type="CenterContainer" parent="Control"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -384.0
-margin_right = 960.0
-margin_bottom = 384.0
+[node name="Content" type="CenterContainer" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 108.0
+margin_right = -288.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Control/Graphics"]
-margin_left = 352.0
-margin_top = 256.0
-margin_right = 608.0
-margin_bottom = 512.0
-rect_min_size = Vector2( 256, 256 )
+[node name="GridContainer" type="GridContainer" parent="Background/Content"]
+margin_left = 400.0
+margin_top = 140.0
+margin_right = 912.0
+margin_bottom = 652.0
+rect_min_size = Vector2( 512, 512 )
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
-columns = 2
+columns = 4
 
-[node name="TextureRect" type="TextureRect" parent="Control/Graphics/GridContainer"]
+[node name="Card1" type="TextureRect" parent="Background/Content/GridContainer"]
 margin_right = 128.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="Control/Graphics/GridContainer"]
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card2" type="TextureRect" parent="Background/Content/GridContainer"]
 margin_left = 128.0
 margin_right = 256.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
 
-[node name="TextureRect3" type="TextureRect" parent="Control/Graphics/GridContainer"]
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card3" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 256.0
+margin_right = 384.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card4" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 384.0
+margin_right = 512.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card4"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card5" type="TextureRect" parent="Background/Content/GridContainer"]
 margin_top = 128.0
 margin_right = 128.0
 margin_bottom = 256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
 
-[node name="TextureRect4" type="TextureRect" parent="Control/Graphics/GridContainer"]
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card5"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card6" type="TextureRect" parent="Background/Content/GridContainer"]
 margin_left = 128.0
 margin_top = 128.0
 margin_right = 256.0
 margin_bottom = 256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card6"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card7" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 384.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card7"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card8" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 384.0
+margin_top = 128.0
+margin_right = 512.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card8"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card9" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_top = 256.0
+margin_right = 128.0
+margin_bottom = 384.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card9"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card10" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 128.0
+margin_top = 256.0
+margin_right = 256.0
+margin_bottom = 384.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card10"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card11" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 256.0
+margin_top = 256.0
+margin_right = 384.0
+margin_bottom = 384.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card11"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card12" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 512.0
+margin_bottom = 384.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card12"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card13" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_top = 384.0
+margin_right = 128.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card13"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card14" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 128.0
+margin_top = 384.0
+margin_right = 256.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card14"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card15" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 256.0
+margin_top = 384.0
+margin_right = 384.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card15"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="Card16" type="TextureRect" parent="Background/Content/GridContainer"]
+margin_left = 384.0
+margin_top = 384.0
+margin_right = 512.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Unit" type="TextureRect" parent="Background/Content/GridContainer/Card16"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+stretch_mode = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[connection signal="pressed" from="Control/Buttons/StartGame" to="." method="_on_StartGame_pressed"]
-[connection signal="pressed" from="Control/Buttons/ExitToDesktop" to="." method="_on_ExitToDesktop_pressed"]
+[node name="FlipTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="pressed" from="Background/Buttons/StartGame" to="." method="_on_StartGame_pressed"]
+[connection signal="pressed" from="Background/Buttons/ExitToDesktop" to="." method="_on_ExitToDesktop_pressed"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_FlipTimer_timeout"]
