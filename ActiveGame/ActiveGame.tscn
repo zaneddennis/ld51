@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://ActiveGame/ActiveGame.gd" type="Script" id=1]
 [ext_resource path="res://Themes/Theme.tres" type="Theme" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://ActiveGame/Audio/LD51_Action_Song.mp3" type="AudioStream" id=20]
 [ext_resource path="res://ActiveGame/AI.gd" type="Script" id=21]
 [ext_resource path="res://ActiveGame/UI/Pause.gd" type="Script" id=22]
+[ext_resource path="res://ActiveGame/Art/Textures/Inspector.png" type="Texture" id=23]
+[ext_resource path="res://ActiveGame/UI/TileInspector.gd" type="Script" id=24]
+[ext_resource path="res://ActiveGame/UI/Inspector.gd" type="Script" id=25]
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 16 )
@@ -358,9 +361,6 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Common/CardsPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CardOption1" type="Control" parent="UI/Common/CardsPanel/VBoxContainer"]
 margin_right = 128.0
@@ -379,22 +379,15 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "UNIT NAME"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button" type="TextureButton" parent="UI/Common/CardsPanel/VBoxContainer/CardOption1"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -48.0
-margin_top = -64.0
-margin_right = 48.0
-margin_bottom = 64.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 96, 128 )
 disabled = true
 texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption1/Button"]
 anchor_left = 0.5
@@ -588,6 +581,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Inspector" type="NinePatchRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption1"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 23 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="CardOption2" type="Control" parent="UI/Common/CardsPanel/VBoxContainer"]
 margin_top = 226.0
 margin_right = 128.0
@@ -611,17 +614,13 @@ __meta__ = {
 }
 
 [node name="Button" type="TextureButton" parent="UI/Common/CardsPanel/VBoxContainer/CardOption2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -48.0
-margin_top = -64.0
-margin_right = 48.0
-margin_bottom = 64.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 96, 128 )
 disabled = true
 texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption2/Button"]
 anchor_left = 0.5
@@ -815,6 +814,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Inspector" type="NinePatchRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption2"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 23 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="CardOption3" type="Control" parent="UI/Common/CardsPanel/VBoxContainer"]
 margin_top = 452.0
 margin_right = 128.0
@@ -838,17 +847,13 @@ __meta__ = {
 }
 
 [node name="Button" type="TextureButton" parent="UI/Common/CardsPanel/VBoxContainer/CardOption3"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -48.0
-margin_top = -64.0
-margin_right = 48.0
-margin_bottom = 64.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 96, 128 )
 disabled = true
 texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption3/Button"]
 anchor_left = 0.5
@@ -1042,6 +1047,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Inspector" type="NinePatchRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption3"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 23 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="CardOption4" type="Control" parent="UI/Common/CardsPanel/VBoxContainer"]
 margin_top = 678.0
 margin_right = 128.0
@@ -1065,17 +1080,13 @@ __meta__ = {
 }
 
 [node name="Button" type="TextureButton" parent="UI/Common/CardsPanel/VBoxContainer/CardOption4"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -48.0
-margin_top = -64.0
-margin_right = 48.0
-margin_bottom = 64.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 96, 128 )
 disabled = true
 texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption4/Button"]
 anchor_left = 0.5
@@ -1268,6 +1279,16 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Inspector" type="NinePatchRect" parent="UI/Common/CardsPanel/VBoxContainer/CardOption4"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 23 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="ResourcesPanel" type="NinePatchRect" parent="UI/Common"]
 anchor_left = 1.0
@@ -1473,34 +1494,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="CardDetails" type="NinePatchRect" parent="UI/Common"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -320.0
-margin_top = -140.0
-margin_right = 320.0
-margin_bottom = -32.0
-texture = ExtResource( 8 )
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Common/CardDetails"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "The quick brown fox jumped over the lazy grey dog."
 
 [node name="CurrentPhase" type="Label" parent="UI/Common"]
 anchor_left = 0.5
@@ -1755,6 +1748,76 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Exit to Desktop"
 
+[node name="Inspector" type="Control" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -384.0
+margin_top = -272.0
+margin_right = 384.0
+margin_bottom = -64.0
+script = ExtResource( 25 )
+
+[node name="Terrain" type="NinePatchRect" parent="UI/Inspector"]
+anchor_right = 1.0
+margin_bottom = 64.0
+texture = ExtResource( 8 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="UI/Inspector/Terrain"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "[TERRAIN] Terrain description"
+valign = 1
+autowrap = true
+
+[node name="Unit" type="NinePatchRect" parent="UI/Inspector"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -128.0
+texture = ExtResource( 8 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="UI/Inspector/Unit"]
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "[UNIT] Unit description"
+autowrap = true
+
+[node name="Quote_Label" type="Label" parent="UI/Inspector/Unit"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "\"Witty quote goes here\""
+valign = 2
+autowrap = true
+
 [node name="AI" type="Node" parent="."]
 script = ExtResource( 21 )
 
@@ -1853,6 +1916,11 @@ coords = Vector2( 8, 10 )
 [node name="Projectiles" type="Node2D" parent="World"]
 
 [node name="VFX" type="Node2D" parent="World"]
+
+[node name="TileInspector" type="Sprite" parent="World/VFX"]
+texture = ExtResource( 23 )
+centered = false
+script = ExtResource( 24 )
 
 [node name="RTSCamera" type="Camera2D" parent="."]
 current = true

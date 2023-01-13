@@ -18,6 +18,10 @@ func _ready():
 	for i in range(1, 5):
 		var co = $Common/CardsPanel/VBoxContainer.get_node("CardOption" + str(i))
 		co.connect("mouse_entered", self, "_on_CardOption_mouse_entered", [i])
+		#co.connect("mouse_exited", self, "_on_CardOption_mouse_exited", [i])
+		
+		co.get_node("Button").connect("mouse_entered", self, "_on_CardOptionButton_mouse_entered", [co])
+		co.get_node("Button").connect("mouse_exited", self, "_on_CardOptionButton_mouse_exited", [co])
 		co.get_node("Button").connect("pressed", self, "_on_CardOptionButton_pressed", [i])
 
 func _process(delta):
@@ -32,10 +36,11 @@ func _process(delta):
 
 
 func ProcessBuyCard():
-	if $Common/CardsPanel.get_local_mouse_position().x < $Common/CardsPanel.margin_right:
-		$Common/CardDetails.show()
-	else:
-		$Common/CardDetails.hide()
+	#if $Common/CardsPanel.get_local_mouse_position().x < $Common/CardsPanel.margin_right:
+	#	$Common/CardDetails.show()
+	#else:
+	#	$Common/CardDetails.hide()
+	pass
 
 func ProcessPlaceCard():
 	if $PlaceCard/Timer.time_left <= 0.0:
@@ -88,9 +93,8 @@ func ActivatePlaceCard():
 	UpdateResourcesPanel()
 	
 	if playerSelection:
-		$Common/CardDetails/Label.text = Database.cards[playerSelection]["description"]
-		$Common/CardDetails.show()
-	
+		#$Common/CardDetails/Label.text = Database.cards[playerSelection]["description"]
+		#$Common/CardDetails.show()
 	
 		# initialize player validity map
 		var bestY = 9999
@@ -224,7 +228,15 @@ func _on_CardOption_mouse_entered(i):
 		var cardInfo = Database.cards[cardName]
 		var desc = cardInfo["description"]
 		
-		$Common/CardDetails/Label.text = desc
+		#$Common/CardDetails/Label.text = desc
+	
+	#$Common/CardsPanel/VBoxContainer.get_node("CardOption%d" % i).get_node("Inspector").show()
+
+func _on_CardOptionButton_mouse_entered(co):
+	co.get_node("Inspector").show()
+
+func _on_CardOptionButton_mouse_exited(co):
+	co.get_node("Inspector").hide()
 
 func _on_CardOptionButton_pressed(i):
 	print("Card Number %d pressed" % i)

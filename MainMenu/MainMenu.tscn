@@ -88,9 +88,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 108.0
 margin_right = -288.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GridContainer" type="GridContainer" parent="Background/Content"]
 margin_left = 400.0
@@ -450,7 +447,7 @@ stretch_mode = 4
 stream = ExtResource( 4 )
 
 [node name="FlipTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.5
 autostart = true
 
 [connection signal="pressed" from="Background/Buttons/StartGame" to="." method="_on_StartGame_pressed"]
