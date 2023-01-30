@@ -8,6 +8,10 @@ func _ready():
 	pass
 
 
+func PickHarvest():
+	var resourceNeeds = Util.DictSort(ag.opponentResources)
+	return resourceNeeds[0][0]
+
 func PickCard(playerSelectionIx):
 	var valid = []
 	

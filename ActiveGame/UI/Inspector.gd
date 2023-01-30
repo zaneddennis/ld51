@@ -48,7 +48,7 @@ func ShowTerrain(base, bonus):
 	
 	$Terrain/Label.text = "[%s] %s" % [
 		tileName,
-		Database.tilesBase[tileName]["details"]]
+		Database.tiles[tileName]["details"]]
 	
 	$Terrain.show()
 

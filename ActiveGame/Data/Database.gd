@@ -30,7 +30,7 @@ var cards = {
 			"Wood": 2
 		},
 		
-		"maxHP": 4,
+		"maxHP": 15,
 		"actionSpeed": 0.25,
 		"attack": 0,
 		"defense": 3,
@@ -46,10 +46,10 @@ var cards = {
 			"Wood": 6
 		},
 		
-		"maxHP": 6,
-		"actionSpeed": 0.3,
-		"attack": 7,
-		"defense": 4,
+		"maxHP": 25,
+		"actionSpeed": 0.2,
+		"attack": 6,
+		"defense": 5,
 		
 		"maxRange": 2
 	},
@@ -65,10 +65,10 @@ var cards = {
 			"Iron": 4
 		},
 		
-		"maxHP": 10,
-		"actionSpeed": 0.2,
-		"attack": 5,
-		"defense": 6,
+		"maxHP": 25,
+		"actionSpeed": 0.3,
+		"attack": 3,
+		"defense": 7,
 		
 		"attackTexture": "Sword.png",
 		"aoeMap": [Vector2(0, -1)]
@@ -85,10 +85,10 @@ var cards = {
 			"Iron": 12
 		},
 		
-		"maxHP": 16,
-		"actionSpeed": 0.35,
-		"attack": 6,
-		"defense": 9,
+		"maxHP": 35,
+		"actionSpeed": 0.3,
+		"attack": 5,
+		"defense": 15,
 		
 		"attackTexture": "Sword.png",
 		"aoeMap": [Vector2(0, -1), Vector2(0, -2)]
@@ -105,9 +105,9 @@ var cards = {
 			"Iron": 6
 		},
 		
-		"maxHP": 8,
+		"maxHP": 30,
 		"actionSpeed": 0.4,
-		"attack": 15,
+		"attack": 9,
 		"defense": 6,
 		
 		"maxRange": 4,
@@ -123,10 +123,10 @@ var cards = {
 			"Iron": 16
 		},
 		
-		"maxHP": 14,
-		"actionSpeed": 0.3,
-		"attack": 8,
-		"defense": 10,
+		"maxHP": 40,
+		"actionSpeed": 0.45,
+		"attack": 7,
+		"defense": 12,
 		
 		"attackTexture": "Sword.png",
 		"aoeMap": [Vector2(-1, -1), Vector2(0, -1), Vector2(1, -1)]
@@ -142,10 +142,10 @@ var cards = {
 			"Gems": 6
 		},
 		
-		"maxHP": 5,
+		"maxHP": 20,
 		"actionSpeed": 0.2,
-		"attack": 3,
-		"defense": 3,
+		"attack": 4,
+		"defense": 4,
 		
 		"maxRange": 2,
 		"spell": "Piercing_Bolt"
@@ -161,10 +161,10 @@ var cards = {
 			"Gems": 18
 		},
 		
-		"maxHP": 10,
+		"maxHP": 40,
 		"actionSpeed": 0.3,
-		"attack": 5,
-		"defense": 6,
+		"attack": 6,
+		"defense": 8,
 		
 		"maxRange": 3,
 		"spell": "Fireball"
@@ -180,7 +180,7 @@ var cards = {
 			"Gems": 14
 		},
 		
-		"maxHP": 12,
+		"maxHP": 30,
 		"actionSpeed": 0.15,
 		"attack": 0,
 		"defense": 8,
@@ -196,10 +196,10 @@ var cards = {
 		"unitType": "structure",
 		"texture": Vector2(0, 0),
 		
-		"maxHP": 30,
+		"maxHP": 50,
 		"actionSpeed": 0.2,
 		"attack": 0,
-		"defense": 3
+		"defense": 10
 	},
 	"Wall": {
 		"frequency": 6,
@@ -211,14 +211,14 @@ var cards = {
 			"Wood": 16
 		},
 		
-		"maxHP": 20,
+		"maxHP": 30,
 		"actionSpeed": 0,
 		"attack": 0,
-		"defense": 3
+		"defense": 10
 	}
 }
 
-var tilesBase = {
+var tiles = {
 	# Base
 	"Grass": {
 		"details": "Flat terrain with no effects"
@@ -230,15 +230,18 @@ var tilesBase = {
 	
 	# Bonus
 	"Farm": {
-		"details": "Generates Food if a Peasant is placed"
+		"details": "Generates Food if a Peasant is placed",
+		"resource": "Food",
 	},
 	
 	"Forest": {
-		"details": "Generates Wood if a Peasant is placed; also provides +1 to defense"
+		"details": "Generates Wood if a Peasant is placed; also provides +1 to defense",
+		"resource": "Wood",
 	},
 	
 	"Gems Deposit": {
-		"details": "Generates Gems if a Peasant is placed"
+		"details": "Generates Gems if a Peasant is placed",
+		"resource": "Gems",
 	},
 	
 	"Hill": {
@@ -246,7 +249,8 @@ var tilesBase = {
 	},
 	
 	"Iron Deposit": {
-		"details": "Generates Iron if a Peasant is placed"
+		"details": "Generates Iron if a Peasant is placed",
+		"resource": "Iron",
 	},
 	
 	"Mountain": {

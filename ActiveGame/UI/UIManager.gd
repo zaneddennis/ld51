@@ -23,6 +23,14 @@ func _ready():
 		co.get_node("Button").connect("mouse_entered", self, "_on_CardOptionButton_mouse_entered", [co])
 		co.get_node("Button").connect("mouse_exited", self, "_on_CardOptionButton_mouse_exited", [co])
 		co.get_node("Button").connect("pressed", self, "_on_CardOptionButton_pressed", [i])
+	
+	for r in ["Food", "Wood", "Iron", "Gems"]:
+		var hb = $Harvest/HarvestOptions/VBoxContainer/HBoxContainer.get_node(r).get_node("Button")
+		#var count = get_node("Common/ResourcesPanel/Player/%s/Label" % r).text
+		#print(count)
+		#ho.get_node("Button").text = "Harvest [%s] (+%d)" % [r, 0]
+		hb.connect("pressed", self, "_on_Harvest_Button_pressed", [r, hb])
+
 
 func _process(delta):
 	$Common/CurrentPhase.text = ag.phase + " PHASE"
@@ -36,10 +44,6 @@ func _process(delta):
 
 
 func ProcessBuyCard():
-	#if $Common/CardsPanel.get_local_mouse_position().x < $Common/CardsPanel.margin_right:
-	#	$Common/CardDetails.show()
-	#else:
-	#	$Common/CardDetails.hide()
 	pass
 
 func ProcessPlaceCard():
@@ -68,14 +72,23 @@ func ProcessAction():
 	UpdateResourcesPanel()
 
 
+func ActivateHarvest():
+	$Action.hide()
+	
+	$Harvest.show()
+	
+	$Common/ResourcesPanel.margin_left = -384
+	
+	pass
+
 func ActivateBuyCard():
 	# close out Action UI
-	$Action.hide()
+	$Harvest.hide()
 	
 	$BuyCard.show()
 	
 	$Common/CardsPanel.margin_right = 256
-	$Common/ResourcesPanel.margin_left = -256
+	$Common/ResourcesPanel.margin_left = -384
 	
 	UpdateCards()
 	UpdateResourcesPanel()
@@ -84,7 +97,7 @@ func ActivatePlaceCard():
 	$BuyCard.hide()
 	
 	$Common/CardsPanel.margin_right = 128
-	$Common/ResourcesPanel.margin_left = -128
+	$Common/ResourcesPanel.margin_left = -256
 	
 	for co in $Common/CardsPanel/VBoxContainer.get_children():
 		var button = co.get_node("Button")
@@ -93,8 +106,6 @@ func ActivatePlaceCard():
 	UpdateResourcesPanel()
 	
 	if playerSelection:
-		#$Common/CardDetails/Label.text = Database.cards[playerSelection]["description"]
-		#$Common/CardDetails.show()
 	
 		# initialize player validity map
 		var bestY = 9999
@@ -131,12 +142,28 @@ func ActivateAction():
 
 
 func UpdateResourcesPanel():
+	var harvests = [
+		{"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1},
+		{"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1}
+		]
+	for ui in ag.get_node("World/Units").get_children():
+		if ui.unitType == "peasant":
+			var terrain = ui.GetTerrain()
+			if terrain:
+				var terrainInfo = Database.tiles[terrain]
+				if "resource" in terrainInfo:
+					var resource = terrainInfo["resource"]
+					harvests[ui.unitTeam][resource] += 1
+	
 	for r in ["Food", "Wood", "Iron", "Gems"]:
 		var count = ag.playerResources[r]
-		get_node("Common/ResourcesPanel/VBoxContainer/" + r).get_node("Label").text = str(count)
+		var harvestCount = harvests[0][r]
+		get_node("Common/ResourcesPanel/Player/" + r).get_node("Label").text = "%d (%d)" % [count, harvestCount]
 		
-		var oppCount = ag.opponentResources[r]
-		get_node("Common/ResourcesPanel/VBoxContainer/" + r).get_node("OppLabel").text = "Opponent: " + str(oppCount)
+		count = ag.opponentResources[r]
+		harvestCount = harvests[1][r]
+		get_node("Common/ResourcesPanel/Opponent/" + r).get_node("Label").text = "%d (%d)" % [count, harvestCount]
+
 
 func UpdateCards():
 	var i = 1
@@ -168,6 +195,29 @@ func UpdateCards():
 		
 		i += 1
 
+
+func SelectHarvest(r):
+	var harvests = [
+		{"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1},
+		{"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1}
+		]
+	for ui in ag.get_node("World/Units").get_children():
+		if ui.unitType == "peasant":
+			var terrain = ui.GetTerrain()
+			if terrain:
+				var terrainInfo = Database.tiles[terrain]
+				if "resource" in terrainInfo:
+					var resource = terrainInfo["resource"]
+					harvests[ui.unitTeam][resource] += 1
+	
+	ag.playerResources[r] += harvests[0][r]
+	
+	# opponent pick
+	var oppHarvest = ag.get_node("AI").PickHarvest()
+	ag.opponentResources[oppHarvest] += harvests[1][oppHarvest]
+	
+	UpdateResourcesPanel()
+	ag.EnterBuyCard()
 
 func SelectCard(i):
 	playerSelectionIx = i
@@ -246,10 +296,11 @@ func _on_CardOptionButton_pressed(i):
 func _on_PassButton_pressed():
 	SelectCard(-1)
 
-
 func _on_BuyCard_Timer_timeout():
 	ag.EnterPlaceCard()
 
-
 func _on_PlaceCard_Timer_timeout():
 	ag.EnterAction()
+
+func _on_Harvest_Button_pressed(r, hb):
+	SelectHarvest(r)

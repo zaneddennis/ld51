@@ -35,13 +35,15 @@ func _process(delta):
 		$HPBar.value = hp
 		
 		if unitType == "peasant":
-			ProcessPeasant(delta)
+			#ProcessPeasant(delta)
+			pass
 		
 		elif unitType in ["projectile", "melee", "mage"]:
 			ProcessSoldier(delta)
 		
 		elif unitType == "structure":
-			ProcessStructure(delta)
+			#ProcessStructure(delta)
+			pass
 		
 		else:
 			assert(false)
@@ -148,7 +150,17 @@ func Attacked(att, isMagic):
 		effDefense += 2
 	
 	if not isMagic:
-		damage = max(1, round(att/effDefense))
+		#damage = max(1, round(att/effDefense))
+		
+		if att < effDefense - 2:
+			damage = max(int(4 - (effDefense - 2 - att)), 1)
+		
+		elif att > effDefense + 4:
+			damage = max(int(7 + (att - (effDefense + 4))/4), 1)
+		
+		else:
+			damage = max(int(5 + (att - effDefense)/2), 1)
+		
 	print(unitName, " is hit! From %d Attack and %d Defense, suffers %d damage." % [att, effDefense, damage])
 	TakeDamage(damage)
 
@@ -207,7 +219,7 @@ func Activate():
 	if unitType == "projectile":
 		maxRange = unitInfo["maxRange"]
 	
-	if unitType != "structure" or unitName == "Keep":
+	if unitType != "structure" and unitType != "peasant":
 		actionSpeed = unitInfo["actionSpeed"]
 		actionTime = 1.0 / actionSpeed
 		
@@ -218,3 +230,9 @@ func Activate():
 		$ActionProgress.show()
 	else:
 		$ActionProgress.hide()
+
+
+func GetTerrain():
+	var tm_bonus = get_node("/root/ActiveGame/World/Tilemaps/Bonus")
+	var tId = tm_bonus.get_cellv(coords)
+	return tm_bonus.tile_set.tile_get_name(tId)

@@ -42,6 +42,11 @@ func _ready():
 	EnterBuyCard()
 
 
+func EnterHarvest():
+	print("Entering HARVEST phase")
+	phase = "HARVEST"
+	$UI.ActivateHarvest()
+
 func EnterBuyCard():
 	print("Entering BUY_CARD phase")
 	phase = "BUY_CARD"
@@ -115,18 +120,6 @@ func SpawnAOEEffect(coords, map, effect="Damage", spritepath="", dir=0):
 			SpawnFadingAlert(coords + v, "", "", spritepath, dir)
 
 
-"""func CheckAOE_OLD(coords, map, attack, isMagic=false):
-	for v in map:
-		var coord = coords + v
-		if $World/Tilemaps/Units.get_cellv(coord) != -1:
-			var unit = null
-			for ui in $World/Units.get_children():
-				if ui.coords == coord:
-					unit = ui
-					break
-			assert(unit != null)
-			unit.Attacked(attack, isMagic)"""
-
 func CheckAOE_v2(coords, map, action, actionParams):
 	for v in map:
 		var coord = coords + v
@@ -159,4 +152,5 @@ func _on_Timer_timeout():
 	print("Timer timeout")
 	
 	if phase == "ACTION":
-		EnterBuyCard()
+		#EnterBuyCard()
+		EnterHarvest()

@@ -354,9 +354,6 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Common/CardsPanel"]
 anchor_right = 1.0
@@ -1290,82 +1287,68 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="HSeparator" type="HSeparator" parent="UI/Common/CardsPanel"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.75
+margin_left = 8.0
+margin_right = -8.0
+margin_bottom = 4.0
+
 [node name="ResourcesPanel" type="NinePatchRect" parent="UI/Common"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -128.0
+margin_left = -256.0
 texture = ExtResource( 8 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Common/ResourcesPanel"]
+[node name="Opponent" type="GridContainer" parent="UI/Common/ResourcesPanel"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+columns = 2
 
-[node name="Food" type="Control" parent="UI/Common/ResourcesPanel/VBoxContainer"]
-margin_right = 128.0
-margin_bottom = 222.0
+[node name="Food" type="Control" parent="UI/Common/ResourcesPanel/Opponent"]
+margin_right = 126.0
+margin_bottom = 223.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/VBoxContainer/Food"]
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Opponent/Food"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -56.0
-margin_bottom = -32.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 10 )
 stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Food"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -56.0
-margin_bottom = -32.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OppLabel" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Food"]
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Opponent/Food"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -32.0
+margin_top = -54.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Opponent: 0"
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wood" type="Control" parent="UI/Common/ResourcesPanel/VBoxContainer"]
-margin_top = 226.0
-margin_right = 128.0
-margin_bottom = 448.0
+[node name="Wood" type="Control" parent="UI/Common/ResourcesPanel/Opponent"]
+margin_left = 130.0
+margin_right = 256.0
+margin_bottom = 223.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/VBoxContainer/Wood"]
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Opponent/Wood"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -56.0
-margin_bottom = -32.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 11 )
 stretch_mode = 4
@@ -1373,46 +1356,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Wood"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -56.0
-margin_bottom = -32.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OppLabel" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Wood"]
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Opponent/Wood"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -32.0
+margin_top = -54.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Opponent: 0"
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Iron" type="Control" parent="UI/Common/ResourcesPanel/VBoxContainer"]
-margin_top = 452.0
-margin_right = 128.0
-margin_bottom = 674.0
+[node name="Iron" type="Control" parent="UI/Common/ResourcesPanel/Opponent"]
+margin_top = 227.0
+margin_right = 126.0
+margin_bottom = 450.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/VBoxContainer/Iron"]
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Opponent/Iron"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -56.0
-margin_bottom = -32.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 12 )
 stretch_mode = 4
@@ -1420,80 +1387,206 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Iron"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -56.0
-margin_bottom = -32.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OppLabel" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Iron"]
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Opponent/Iron"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -32.0
+margin_top = -54.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Opponent: 0"
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gems" type="Control" parent="UI/Common/ResourcesPanel/VBoxContainer"]
-margin_top = 678.0
-margin_right = 128.0
-margin_bottom = 900.0
+[node name="Gems" type="Control" parent="UI/Common/ResourcesPanel/Opponent"]
+margin_left = 130.0
+margin_top = 227.0
+margin_right = 256.0
+margin_bottom = 450.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/VBoxContainer/Gems"]
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Opponent/Gems"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -56.0
-margin_bottom = -32.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 13 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Opponent/Gems"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="GridContainer" parent="UI/Common/ResourcesPanel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+columns = 2
+
+[node name="Food" type="Control" parent="UI/Common/ResourcesPanel/Player"]
+margin_right = 126.0
+margin_bottom = 223.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Player/Food"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 10 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Player/Food"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wood" type="Control" parent="UI/Common/ResourcesPanel/Player"]
+margin_left = 130.0
+margin_right = 256.0
+margin_bottom = 223.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Player/Wood"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 11 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Gems"]
-anchor_left = 1.0
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Player/Wood"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -56.0
-margin_bottom = -32.0
+margin_top = -54.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "0"
+text = "0 (0)"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OppLabel" type="Label" parent="UI/Common/ResourcesPanel/VBoxContainer/Gems"]
+[node name="Iron" type="Control" parent="UI/Common/ResourcesPanel/Player"]
+margin_top = 227.0
+margin_right = 126.0
+margin_bottom = 450.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Player/Iron"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 12 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Player/Iron"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -32.0
+margin_top = -54.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Opponent: 0"
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Gems" type="Control" parent="UI/Common/ResourcesPanel/Player"]
+margin_left = 130.0
+margin_top = 227.0
+margin_right = 256.0
+margin_bottom = 450.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Common/ResourcesPanel/Player/Gems"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 13 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="UI/Common/ResourcesPanel/Player/Gems"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0 (0)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="UI/Common/ResourcesPanel"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -2.0
+margin_right = -8.0
+margin_bottom = 2.0
+
+[node name="Opponent_Label" type="Label" parent="UI/Common/ResourcesPanel"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = 36.0
+text = "Opponent"
+align = 1
+valign = 1
+
+[node name="Player_Label" type="Label" parent="UI/Common/ResourcesPanel"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = 36.0
+text = "Player"
+align = 1
+valign = 1
 
 [node name="CurrentPhase" type="Label" parent="UI/Common"]
 anchor_left = 0.5
@@ -1508,6 +1601,135 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Harvest" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HarvestOptions" type="NinePatchRect" parent="UI/Harvest"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -384.0
+margin_top = -128.0
+margin_right = 384.0
+margin_bottom = 128.0
+texture = ExtResource( 8 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Harvest/HarvestOptions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Label" type="Label" parent="UI/Harvest/HarvestOptions/VBoxContainer"]
+margin_right = 752.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Choose Harvest"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Harvest/HarvestOptions/VBoxContainer"]
+margin_top = 36.0
+margin_right = 752.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Food" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
+margin_right = 185.0
+margin_bottom = 204.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Food"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -64.0
+texture = ExtResource( 10 )
+stretch_mode = 4
+
+[node name="Button" type="Button" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Food"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+text = "Harvest [Resource] (+X)"
+
+[node name="Wood" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
+margin_left = 189.0
+margin_right = 374.0
+margin_bottom = 204.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Wood"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -64.0
+texture = ExtResource( 11 )
+stretch_mode = 4
+
+[node name="Button" type="Button" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Wood"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+text = "Harvest [Resource] (+X)"
+
+[node name="Iron" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
+margin_left = 378.0
+margin_right = 563.0
+margin_bottom = 204.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Iron"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -64.0
+texture = ExtResource( 12 )
+stretch_mode = 4
+
+[node name="Button" type="Button" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Iron"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+text = "Harvest [Resource] (+X)"
+
+[node name="Gems" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
+margin_left = 567.0
+margin_right = 752.0
+margin_bottom = 204.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Gems"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -64.0
+texture = ExtResource( 13 )
+stretch_mode = 4
+
+[node name="Button" type="Button" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer/Gems"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+text = "Harvest [Resource] (+X)"
 
 [node name="BuyCard" type="Control" parent="UI"]
 visible = false
@@ -1760,6 +1982,7 @@ margin_bottom = -64.0
 script = ExtResource( 25 )
 
 [node name="Terrain" type="NinePatchRect" parent="UI/Inspector"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
 anchor_right = 1.0
 margin_bottom = 64.0
 texture = ExtResource( 8 )
@@ -1782,6 +2005,7 @@ valign = 1
 autowrap = true
 
 [node name="Unit" type="NinePatchRect" parent="UI/Inspector"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1843,7 +2067,7 @@ tile_data = PoolIntArray( 65542, 4, 0, 65544, 1, 0, 65545, 1, 0, 65546, 2, 0, 13
 z_index = 1
 tile_set = SubResource( 4 )
 format = 1
-tile_data = PoolIntArray( 8, 0, 0, 262153, 4, 0, 327688, 4, 0, 327690, 4, 0, 393225, 4, 0, 589833, 3, 0, 655368, 3, 0, 655370, 3, 0, 720905, 3, 0, 851973, 0, 0 )
+tile_data = PoolIntArray( 8, 0, 0, 851973, 0, 0 )
 
 [node name="UnitPlacement" type="TileMap" parent="World/Tilemaps"]
 modulate = Color( 1, 1, 1, 0.392157 )
@@ -1863,55 +2087,6 @@ unitName = "Keep"
 unitTeam = 1
 unitDir = 2
 coords = Vector2( 8, 0 )
-
-[node name="UnitInstance10" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 608, 288 )
-unitName = "Spearman"
-unitTeam = 1
-coords = Vector2( 9, 4 )
-
-[node name="UnitInstance11" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 672, 352 )
-unitName = "Spearman"
-unitTeam = 1
-unitDir = 1
-coords = Vector2( 10, 5 )
-
-[node name="UnitInstance12" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 608, 416 )
-unitName = "Spearman"
-unitTeam = 1
-unitDir = 2
-coords = Vector2( 9, 6 )
-
-[node name="UnitInstance13" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 544, 352 )
-unitName = "Spearman"
-unitTeam = 1
-unitDir = 3
-coords = Vector2( 8, 5 )
-
-[node name="UnitInstance14" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 608, 608 )
-unitName = "Archer"
-coords = Vector2( 9, 9 )
-
-[node name="UnitInstance15" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 672, 672 )
-unitName = "Archer"
-unitDir = 1
-coords = Vector2( 10, 10 )
-
-[node name="UnitInstance16" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 608, 736 )
-unitName = "Archer"
-unitDir = 2
-coords = Vector2( 9, 11 )
-
-[node name="UnitInstance17" parent="World/Units" instance=ExtResource( 17 )]
-position = Vector2( 544, 672 )
-unitName = "Archer"
-coords = Vector2( 8, 10 )
 
 [node name="Projectiles" type="Node2D" parent="World"]
 
