@@ -18,17 +18,17 @@ var activeCards = {
 }
 
 var playerResources = {
-	"Food": 10,
-	"Wood": 5,
-	"Iron": 5,
-	"Gems": 5
+	"Food": 3,
+	"Wood": 3,
+	"Iron": 3,
+	"Gems": 3
 }
 
 var opponentResources = {
-	"Food": 10,
-	"Wood": 5,
-	"Iron": 5,
-	"Gems": 5
+	"Food": 3,
+	"Wood": 3,
+	"Iron": 3,
+	"Gems": 3
 }
 
 

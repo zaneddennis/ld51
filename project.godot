@@ -24,6 +24,8 @@ Util="*res://Util.tscn"
 
 window/size/width=1600
 window/size/height=900
+window/size/resizable=false
+window/size/borderless=true
 window/size/fullscreen=true
 window/stretch/aspect="keep"
 

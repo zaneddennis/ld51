@@ -143,6 +143,7 @@ func PickTileRanged(tmPlace, yLim, unitInfo):
 		for r in range(maxRange):
 			var coord = v + Vector2(0, r).rotated(dir * (PI/2))
 			if tmUnits.get_cellv(coord) != -1:
+				print(tmUnits.get_cellv(coord))  # this section is broken?
 				var unit = ag.CheckForUnit(coord)
 			
 				if unit.unitTeam == 0:  # facing player unit

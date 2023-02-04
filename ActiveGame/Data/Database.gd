@@ -26,8 +26,8 @@ var cards = {
 		"unitType": "peasant",
 		"texture": Vector2(0, 1),
 		"cost": {
-			"Food": 6,
-			"Wood": 2
+			"Food": 1,
+			"Wood": 1
 		},
 		
 		"maxHP": 15,
@@ -42,8 +42,8 @@ var cards = {
 		"unitType": "projectile",
 		"texture": Vector2(0, 2),
 		"cost": {
-			"Food": 10,
-			"Wood": 6
+			"Food": 2,
+			"Wood": 3
 		},
 		
 		"maxHP": 25,
@@ -60,9 +60,9 @@ var cards = {
 		"unitType": "melee",
 		"texture": Vector2(1, 2),
 		"cost": {
-			"Food": 8,
-			"Wood": 2,
-			"Iron": 4
+			"Food": 2,
+			"Wood": 1,
+			"Iron": 1
 		},
 		
 		"maxHP": 25,
@@ -80,9 +80,9 @@ var cards = {
 		"unitType": "melee",
 		"texture": Vector2(2, 2),
 		"cost": {
-			"Food": 12,
-			"Wood": 2,
-			"Iron": 12
+			"Food": 4,
+			"Wood": 1,
+			"Iron": 4
 		},
 		
 		"maxHP": 35,
@@ -100,9 +100,8 @@ var cards = {
 		"unitType": "projectile",
 		"texture": Vector2(4, 2),
 		"cost": {
-			"Food": 14,
-			"Wood": 10,
-			"Iron": 6
+			"Food": 4,
+			"Wood": 6,
 		},
 		
 		"maxHP": 30,
@@ -119,8 +118,8 @@ var cards = {
 		"unitType": "melee",
 		"texture": Vector2(3, 2),
 		"cost": {
-			"Food": 16,
-			"Iron": 16
+			"Food": 4,
+			"Iron": 5
 		},
 		
 		"maxHP": 40,
@@ -138,8 +137,8 @@ var cards = {
 		"unitType": "mage",
 		"texture": Vector2(0, 3),
 		"cost": {
-			"Food": 8,
-			"Gems": 6
+			"Food": 3,
+			"Gems": 1
 		},
 		
 		"maxHP": 20,
@@ -157,8 +156,8 @@ var cards = {
 		"unitType": "mage",
 		"texture": Vector2(1, 3),
 		"cost": {
-			"Food": 14,
-			"Gems": 18
+			"Food": 5,
+			"Gems": 7
 		},
 		
 		"maxHP": 40,
@@ -176,8 +175,8 @@ var cards = {
 		"unitType": "mage",
 		"texture": Vector2(2, 3),
 		"cost": {
-			"Food": 16,
-			"Gems": 14
+			"Food": 7,
+			"Gems": 3
 		},
 		
 		"maxHP": 30,
@@ -208,7 +207,7 @@ var cards = {
 		"unitType": "structure",
 		"texture": Vector2(1, 0),
 		"cost": {
-			"Wood": 16
+			"Wood": 6
 		},
 		
 		"maxHP": 30,
