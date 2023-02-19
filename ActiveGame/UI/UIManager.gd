@@ -11,6 +11,8 @@ var playerSelectionIx = -1
 var opponentSelection = ""
 var opponentSelectionIx = -1
 
+var playerHarvestsRemaining = -1
+
 
 func _ready():
 	unitsTexture.atlas = load("res://ActiveGame/Art/Tiles/Units.png")
@@ -35,6 +37,8 @@ func _ready():
 func _process(delta):
 	$Common/CurrentPhase.text = ag.phase + " PHASE"
 	
+	if ag.phase == "HARVEST":
+		ProcessHarvest()
 	if ag.phase == "BUY_CARD":
 		ProcessBuyCard()
 	elif ag.phase == "PLACE_CARD":
@@ -42,6 +46,22 @@ func _process(delta):
 	elif ag.phase == "ACTION":
 		ProcessAction()
 
+
+func ProcessHarvest():
+	$Harvest/HarvestOptions/VBoxContainer/RemainingLabel.text = "Harvests Remaining: %d" % playerHarvestsRemaining
+	
+	var harvests = {"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1}
+	for ui in ag.get_node("World/Units").get_children():
+		if ui.unitType == "peasant" and ui.unitTeam == 0:
+			var terrain = ui.GetTerrain()
+			if terrain:
+				var terrainInfo = Database.tiles[terrain]
+				if "resource" in terrainInfo:
+					var resource = terrainInfo["resource"]
+					harvests[resource] += 1
+	
+	for r in ["Food", "Wood", "Iron", "Gems"]:
+		$Harvest/HarvestOptions/VBoxContainer/HBoxContainer.get_node(r + "/Button").text = "Harvest %s (+%d)" % [r, harvests[r]]
 
 func ProcessBuyCard():
 	pass
@@ -79,7 +99,7 @@ func ActivateHarvest():
 	
 	$Common/ResourcesPanel.margin_left = -384
 	
-	pass
+	playerHarvestsRemaining = 2
 
 func ActivateBuyCard():
 	# close out Action UI
@@ -95,6 +115,7 @@ func ActivateBuyCard():
 
 func ActivatePlaceCard():
 	$BuyCard.hide()
+	$PlaceCard.show()
 	
 	$Common/CardsPanel.margin_right = 128
 	$Common/ResourcesPanel.margin_left = -256
@@ -130,11 +151,10 @@ func ActivatePlaceCard():
 			OpponentPlaceUnit()
 		
 		ag.EnterAction()
-	#elif opponentSelection:
-	#	OpponentPlaceUnit()
-	#	ag.EnterAction()
+
 
 func ActivateAction():
+	$PlaceCard.hide()
 	$Action.show()
 	
 	UpdateCards()
@@ -197,6 +217,8 @@ func UpdateCards():
 
 
 func SelectHarvest(r):
+	playerHarvestsRemaining -= 1
+	
 	var harvests = [
 		{"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1},
 		{"Food": 1, "Wood": 1, "Iron": 1, "Gems": 1}
@@ -217,7 +239,9 @@ func SelectHarvest(r):
 	ag.opponentResources[oppHarvest] += harvests[1][oppHarvest]
 	
 	UpdateResourcesPanel()
-	ag.EnterBuyCard()
+	
+	if playerHarvestsRemaining <= 0:
+		ag.EnterBuyCard()
 
 func SelectCard(i):
 	playerSelectionIx = i

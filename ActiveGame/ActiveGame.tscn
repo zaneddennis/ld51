@@ -1603,7 +1603,6 @@ __meta__ = {
 }
 
 [node name="Harvest" type="Control" parent="UI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -1641,8 +1640,17 @@ text = "Choose Harvest"
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Harvest/HarvestOptions/VBoxContainer"]
+[node name="RemainingLabel" type="Label" parent="UI/Harvest/HarvestOptions/VBoxContainer"]
 margin_top = 36.0
+margin_right = 752.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Harvests Remaining: X"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Harvest/HarvestOptions/VBoxContainer"]
+margin_top = 54.0
 margin_right = 752.0
 margin_bottom = 240.0
 size_flags_horizontal = 3
@@ -1650,7 +1658,7 @@ size_flags_vertical = 3
 
 [node name="Food" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
 margin_right = 185.0
-margin_bottom = 204.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1671,7 +1679,7 @@ text = "Harvest [Resource] (+X)"
 [node name="Wood" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
 margin_left = 189.0
 margin_right = 374.0
-margin_bottom = 204.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1692,7 +1700,7 @@ text = "Harvest [Resource] (+X)"
 [node name="Iron" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
 margin_left = 378.0
 margin_right = 563.0
-margin_bottom = 204.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1713,7 +1721,7 @@ text = "Harvest [Resource] (+X)"
 [node name="Gems" type="Control" parent="UI/Harvest/HarvestOptions/VBoxContainer/HBoxContainer"]
 margin_left = 567.0
 margin_right = 752.0
-margin_bottom = 204.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1772,14 +1780,25 @@ one_shot = true
 
 [node name="PlaceCard" type="Control" parent="UI"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Timer" type="Timer" parent="UI/PlaceCard"]
 one_shot = true
+
+[node name="Label" type="Label" parent="UI/PlaceCard"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -261.5
+margin_top = 64.0
+margin_right = 261.5
+margin_bottom = 80.0
+text = "Press Q to rotate Unit left (counterclokcwise) and E to rotate Unit right (clockwise)"
+align = 1
+valign = 1
 
 [node name="Action" type="Control" parent="UI"]
 visible = false

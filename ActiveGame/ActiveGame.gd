@@ -40,6 +40,9 @@ func _ready():
 	Spells.Activate()
 	
 	EnterBuyCard()
+	
+	for tId in $World/Tilemaps/Units.tile_set.get_tiles_ids():
+		print("  %d - %s" % [tId, $World/Tilemaps/Units.tile_set.tile_get_name(tId)])
 
 
 func EnterHarvest():
@@ -77,6 +80,12 @@ func EnterGameOver(result):
 	phase = "GAME_OVER"
 	
 	$UI/GameOver/Panel/Title.text = "YOU HAVE " + result
+	
+	var summary = "Evil has been vanquished, and the citizens of the land shall live happily ever after."
+	if result == "LOST":
+		summary = "Evil reigns over the land, and the poets sing great lamentations."
+	
+	$UI/GameOver/Panel/Summary.text = summary
 	
 	$UI/GameOver.show()
 
@@ -122,7 +131,7 @@ func SpawnAOEEffect(coords, map, effect="Damage", spritepath="", dir=0):
 
 func CheckAOE_v2(coords, map, action, actionParams):
 	for v in map:
-		var coord = coords + v
+		var coord = (coords + v).round()
 		if $World/Tilemaps/Units.get_cellv(coord) != -1:
 			var unit = null
 			for ui in $World/Units.get_children():

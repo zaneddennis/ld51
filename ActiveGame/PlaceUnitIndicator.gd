@@ -51,13 +51,14 @@ func Activate(unitName):
 # takes either 1 or -1
 func Rotate(dir=1):
 	var used_cells = $TileMap.get_used_cells()
-	var color = $TileMap.get_cellv(used_cells[0])
+	if used_cells:
+		var color = $TileMap.get_cellv(used_cells[0])
 	
-	$TileMap.clear()
+		$TileMap.clear()
 	
-	for v in used_cells:
-		$TileMap.set_cellv(v.rotated(dir * (PI/2)), color)
+		for v in used_cells:
+			$TileMap.set_cellv(v.rotated(dir * (PI/2)), color)
 	
-	unitDir = (unitDir + dir) % 4
-	if unitDir < 0:
-		unitDir = 4 + unitDir
+		unitDir = (unitDir + dir) % 4
+		if unitDir < 0:
+			unitDir = 4 + unitDir

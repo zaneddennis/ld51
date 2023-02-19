@@ -48,37 +48,34 @@ margin_top = 32.0
 margin_right = -32.0
 margin_bottom = -32.0
 custom_constants/separation = 32
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StartGame" type="Button" parent="Background/Buttons"]
 margin_right = 256.0
-margin_bottom = 185.0
+margin_bottom = 230.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Start Game"
 
 [node name="Button2" type="Button" parent="Background/Buttons"]
-margin_top = 217.0
+margin_top = 262.0
 margin_right = 256.0
-margin_bottom = 402.0
+margin_bottom = 492.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Placeholder Button"
+text = "How To Play [Placeholder]"
 
 [node name="Button3" type="Button" parent="Background/Buttons"]
-margin_top = 434.0
+margin_top = 524.0
 margin_right = 256.0
-margin_bottom = 619.0
+margin_bottom = 754.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Placeholder Button"
+text = "Options [Placeholder]"
 
 [node name="ExitToDesktop" type="Button" parent="Background/Buttons"]
-margin_top = 651.0
+margin_top = 786.0
 margin_right = 256.0
-margin_bottom = 836.0
+margin_bottom = 1016.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Exit to Desktop"
@@ -90,10 +87,10 @@ margin_top = 108.0
 margin_right = -288.0
 
 [node name="GridContainer" type="GridContainer" parent="Background/Content"]
-margin_left = 400.0
-margin_top = 140.0
-margin_right = 912.0
-margin_bottom = 652.0
+margin_left = 560.0
+margin_top = 230.0
+margin_right = 1072.0
+margin_bottom = 742.0
 rect_min_size = Vector2( 512, 512 )
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
@@ -442,6 +439,16 @@ margin_right = 32.0
 margin_bottom = 16.0
 texture = SubResource( 4 )
 stretch_mode = 4
+
+[node name="Label" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -32.0
+margin_right = -312.0
+text = "Destroy the enemy Keep to win!"
+align = 1
+valign = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

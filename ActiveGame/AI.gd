@@ -98,18 +98,22 @@ func PickTileMelee(tmPlace, yLim):
 	var scores = {}
 	for v in candidates:
 		for i in range(1, 4):
-			scores[[v, i]] = 0
+			if i == 2:
+				scores[[v, i]] = 1  # favor placements facing player
+			else:
+				scores[[v, i]] = 0
 	
 	# if facing enemy, add score
 	var tmUnits = ag.get_node("World/Tilemaps/Units")
 	for vDir in scores:
 		var coord = vDir[0] + Vector2.UP.rotated((PI/2) * vDir[1])
+		coord = coord.round()
 		if tmUnits.get_cellv(coord) != -1:
 			var unit = ag.CheckForUnit(coord)
 			if unit.unitTeam == 0:  # facing player unit
-				scores[vDir] += 1
+				scores[vDir] += 3
 			elif unit.unitTeam == 1:  # facing own teammate
-				scores[vDir] -= 2
+				scores[vDir] -= 3
 	
 	# if on defensive terrain, add score
 	var tmBonus = ag.get_node("World/Tilemaps/Bonus")
@@ -131,7 +135,10 @@ func PickTileRanged(tmPlace, yLim, unitInfo):
 	var scores = {}
 	for v in candidates:
 		for i in range(1, 4):
-			scores[[v, i]] = 0
+			if i == 2:
+				scores[[v, i]] = 1
+			else:
+				scores[[v, i]] = 0
 	
 	var tmUnits = ag.get_node("World/Tilemaps/Units")
 	for vDir in scores:
@@ -140,14 +147,16 @@ func PickTileRanged(tmPlace, yLim, unitInfo):
 		
 		# add scores for enemy units faced
 		# subtract scores for friendly units faced
-		for r in range(maxRange):
-			var coord = v + Vector2(0, r).rotated(dir * (PI/2))
+		for r in range(1, maxRange+1):
+			var coord = v + Vector2(0, -1 * r).rotated(dir * (PI/2))
+			#coord = Vector2(int(coord.x), int(coord.y))  # to make it match better?
+			coord = coord.round()
+			
 			if tmUnits.get_cellv(coord) != -1:
-				print(tmUnits.get_cellv(coord))  # this section is broken?
 				var unit = ag.CheckForUnit(coord)
 			
 				if unit.unitTeam == 0:  # facing player unit
-					scores[vDir] += 2
+					scores[vDir] += 3
 				elif unit.unitTeam == 1:  # facing own teammate
 					scores[vDir] -= 3
 		

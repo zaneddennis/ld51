@@ -23,7 +23,7 @@ func _process(delta):
 	
 	#print(position)
 	
-	if mPos.x < 0 or mPos.y < 0 or mPos.x > MAP_SIZE.x or mPos.y > MAP_SIZE.y:
+	if mPos.x <= 0 or mPos.y <= 0 or mPos.x >= MAP_SIZE.x or mPos.y >= MAP_SIZE.y:
 		hide()
 		inspectorUI.HideTerrain()
 	else:

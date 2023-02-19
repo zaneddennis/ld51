@@ -26,8 +26,8 @@ var cards = {
 		"unitType": "peasant",
 		"texture": Vector2(0, 1),
 		"cost": {
-			"Food": 1,
-			"Wood": 1
+			"Food": 2,
+			"Wood": 2
 		},
 		
 		"maxHP": 15,
@@ -88,7 +88,7 @@ var cards = {
 		"maxHP": 35,
 		"actionSpeed": 0.3,
 		"attack": 5,
-		"defense": 15,
+		"defense": 12,
 		
 		"attackTexture": "Sword.png",
 		"aoeMap": [Vector2(0, -1), Vector2(0, -2)]
@@ -125,7 +125,7 @@ var cards = {
 		"maxHP": 40,
 		"actionSpeed": 0.45,
 		"attack": 7,
-		"defense": 12,
+		"defense": 10,
 		
 		"attackTexture": "Sword.png",
 		"aoeMap": [Vector2(-1, -1), Vector2(0, -1), Vector2(1, -1)]
@@ -138,7 +138,7 @@ var cards = {
 		"texture": Vector2(0, 3),
 		"cost": {
 			"Food": 3,
-			"Gems": 1
+			"Gems": 2
 		},
 		
 		"maxHP": 20,
@@ -150,7 +150,7 @@ var cards = {
 		"spell": "Piercing_Bolt"
 	},
 	"Red Mage": {
-		"frequency": 1,
+		"frequency": 2,
 		"description": "Extremely powerful offensive Mage with devastating AOE fireball attack.",
 		"quote": "I didn't ask how big the room was. I SAID, 'I cast Fireball.'",
 		"unitType": "mage",
@@ -171,6 +171,7 @@ var cards = {
 	"Woodland Sage": {
 		"frequency": 2,
 		"description": "Powerful utility Mage that heals all units in a 2-tile radius.",
+		"quote": "Drink this, and you'll be back in fighting shape in no time. Don't ask what's in it; trust me, you don't want to know.",
 		"Woodland Sage": "Pesky pacifist that heals with equal opportunity.",
 		"unitType": "mage",
 		"texture": Vector2(2, 3),
@@ -182,7 +183,7 @@ var cards = {
 		"maxHP": 30,
 		"actionSpeed": 0.15,
 		"attack": 0,
-		"defense": 8,
+		"defense": 7,
 		
 		"maxRange": 1,
 		"spell": "Healing_Aura"
@@ -195,10 +196,10 @@ var cards = {
 		"unitType": "structure",
 		"texture": Vector2(0, 0),
 		
-		"maxHP": 50,
+		"maxHP": 40,
 		"actionSpeed": 0.2,
 		"attack": 0,
-		"defense": 10
+		"defense": 9
 	},
 	"Wall": {
 		"frequency": 6,
